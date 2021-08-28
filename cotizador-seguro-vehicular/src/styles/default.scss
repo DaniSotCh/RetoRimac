@@ -1,0 +1,25 @@
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+// fonts
+$font-family: 'Lato',
+sans-serif;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-heavy: 700;
+$font-height: 1.5;
+
+* {
+    font-family: $font-family;
+    //color: $dark-grey;
+    line-height: $font-height;
+}
+
+.site-page-header-ghost-wrapper {
+    padding: 24px;
+}
+.ant-avatar{
+    width: fit-content!important;
+    height: fit-content!important;
+    border-radius: 0px!important;
+}
