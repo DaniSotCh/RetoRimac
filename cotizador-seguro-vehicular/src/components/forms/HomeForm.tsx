@@ -1,13 +1,14 @@
 import React, { FunctionComponent, useState } from 'react';
-import {Modal, Typography, Input, Button, Row, Col } from 'antd';
+import { Modal, Typography, Input, Button, Row, Col } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import Dropdown from '../shared/Dropdown';
 import { formatValidInputClass, validInputClass } from '../../resources/PackageHelper';
+import { saveClientQuote } from '../../networking/Networking';
 
 const { Text } = Typography;
 
-interface HomeFormProps{
-    successQuote:()=>void
+interface HomeFormProps {
+    successQuote: () => void
 }
 
 const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
@@ -20,6 +21,7 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
     const [termsCond, setTermsCond] = useState(true);
     const [phone, setPhone] = useState('');
     const [plate, setPlate] = useState('');
+    const [message, setMessage] = useState('');
     const [validates, setValidates] = useState({
         documentType: true,
         nrDocument: true,
@@ -48,10 +50,16 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
         setDocumentType(value);
     }
     const onChangeNrDocument = (event: any) => {
+        if (event.target.value.length > 8) {
+            event.target.value = event.target.value.slice(0, 8)
+        }
         setValidates({ ...validates, nrDocument: true });
         setNrDocument(event.target.value);
     }
     const onChangePhone = (event: any) => {
+        if (event.target.value.length > 9) {
+            event.target.value = event.target.value.slice(0, 9)
+        }
         setValidates({ ...validates, phone: true });
         setPhone(event.target.value);
     }
@@ -60,25 +68,55 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
         setPlate(event.target.value);
     }
     const onQuoteClick = (value: any) => {
-        if(isValid()){
-            props.successQuote();
-        }else{
+                    setMessage('Por favor, complete los campos obligatorios');
+        if (isValid()) {
+            let bodyDetails = {
+                DocumentType: documentType,
+                NrDocument: nrDocument,
+                PhoneNumber: phone,
+                Plate: plate,
+                TermsCond: termsCond
+            }
+            let model = {
+                userId: 1,
+                title: 'Juan',//se utilizará como el nombre del usuario
+                body: JSON.stringify(bodyDetails),
+            }
+            saveClientQuote(model).then(
+                (json) => {
+                    setMessage('Hubo un error inesperado. Por favor, inténtelo de nuevo');
+                    if (json.httpStatusCode !== 201) {
+                        modalError();
+                    } else {
+                        {/*
+                        body: "{\"DocumentType\":\"DNI\",\"NrDocument\":\"79256984\",\"PhoneNumber\":\"949498494\",\"Plate\":\"EEE984\",\"TermsCond\":true}"
+                        httpStatusCode: 201
+                        id: 101
+                        title: "Juan"
+                    */}
+                        localStorage.setItem('UserBody', json.body);
+                        localStorage.setItem('UserName', json.title);
+                        props.successQuote()
+                    }
+                }
+            );
+        } else {
             modalError();
         }
     }
     function modalError() {
         Modal.error({
-          title: 'Error',
-          content: 'Por favor, complete los campos obligatorios'
+            title: 'Error',
+            content: message
         });
-      }
+    }
     return (
         <div className="margin-content-tb">
             <Row justify="space-around" align="middle">
                 <Col span={12} offset={1}>
                     <Text className='title05'>Déjanos tus datos</Text>
                     <Input
-                        className={'margin-input '+ formatValidInputClass(validates.nrDocument)}
+                        className={'margin-input ' + formatValidInputClass(validates.nrDocument)}
                         addonBefore={
                             <Dropdown
                                 className={formatValidInputClass(validates.documentType)}
@@ -86,15 +124,15 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
                                 onChange={onChangeDocumentType}
                                 value={documentType} />}
                         placeholder={'Nro. de doc'}
-                        onChange={onChangeNrDocument} 
+                        onChange={onChangeNrDocument}
                         value={nrDocument}
                         type='number'
                         maxLength={8}
-                        />
+                    />
 
-                    <Input className={'margin-input '+ formatValidInputClass(validates.phone)} type='number' placeholder="Celular" onChange={onChangePhone} maxLength={9} value={phone} />
-                    <Input className={'margin-input '+ formatValidInputClass(validates.plate)} placeholder="Placa" onChange={onChangePlate} maxLength={6} value={plate} />
-                    <Checkbox className={'margin-input '+ formatValidInputClass(validates.termsCond)} onChange={onChangeCheck} checked={termsCond}>Acepto la <a href='/'>Política de Protección de Datos Personales</a> y los <a href='/'>Términos y Condiciones</a>.</Checkbox>
+                    <Input className={'margin-input ' + formatValidInputClass(validates.phone)} type='number' placeholder="Celular" onChange={onChangePhone} maxLength={9} value={phone} />
+                    <Input className={'margin-input ' + formatValidInputClass(validates.plate)} placeholder="Placa" onChange={onChangePlate} maxLength={6} value={plate} />
+                    <Checkbox className={'margin-input ' + formatValidInputClass(validates.termsCond)} onChange={onChangeCheck} checked={termsCond}>Acepto la <a href='/'>Política de Protección de Datos Personales</a> y los <a href='/'>Términos y Condiciones</a>.</Checkbox>
 
                     <Button className='button-red' type='primary' onClick={onQuoteClick}>COTÍZALO</Button>
                 </Col>

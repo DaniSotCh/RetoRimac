@@ -1,14 +1,15 @@
-import React, { FunctionComponent, useState } from 'react';
-import {Modal, Typography, Input, Button, Row, Col, PageHeader, Radio, Divider, InputNumber } from 'antd';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { Modal, Typography, Input, Button, Row, Col, PageHeader, Radio, Divider, InputNumber } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import Dropdown from '../shared/Dropdown';
-import { LeftCircleOutlined,RightOutlined } from '@ant-design/icons';
+import { LeftCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { formatValidInputClass, validInputClass } from '../../resources/PackageHelper';
+import { getClientQuote } from '../../networking/Networking';
 
 const { Text } = Typography;
 
-interface CarDetailsProps{
-    returnPage:()=>void
+interface CarDetailsProps {
+    returnPage: () => void
 }
 
 const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
@@ -30,8 +31,8 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
         { label: 'Wolkswagen', value: 'Wolkswagen' },
         { label: 'Suzuki', value: 'Suzuki' }
     ])
-    
-    const [contactName, setContactName] = useState('Juan');
+
+    const [contactName, setContactName] = useState('');
     const [year, setYear] = useState('2019');
     const [brand, setBrand] = useState('Wolkswagen');
     const [isGas, setIsGas] = useState(false);
@@ -39,15 +40,23 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
     const [amount, setAmount] = useState(14300);
     const [validates, setValidates] = useState({
         year: true,
-        brand: true
+        brand: true,
+        amount: true
     });
+
+    useEffect(() => {
+        let objUser = JSON.parse(localStorage.getItem('UserBody')!);
+        setContactName(localStorage.getItem('UserName')!);
+        //body: "{\"DocumentType\":\"DNI\",\"NrDocument\":\"79256984\",\"PhoneNumber\":\"949498494\",\"Plate\":\"EEE984\",\"TermsCond\":true}"
+    })
 
     const isValid = () => {
         setValidates({
             year: validInputClass(year),
-            brand: validInputClass(brand)
+            brand: validInputClass(brand),
+            amount: validInputClass(amount.toString())
         })
-        return (isGas && validInputClass(year) && validInputClass(brand));
+        return (validInputClass(year) && validInputClass(brand) && validInputClass(amount.toString()));
     }
 
     const onChangeCheck = (event: any) => {
@@ -63,22 +72,27 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
         setBrand(value);
     }
     const onChangeAmount = (value: any) => {
-        //setValidates({ ...validates, brand: true });
-        setAmount(value);
+        setValidates({ ...validates, amount: true });
+        setAmount(value != null ? value : 0);
     }
     const onContinueClick = (value: any) => {
-        if(isValid()){
-
-        }else{
+        if (isValid()) {
+            let model = {
+                Year: year,
+                Brand: brand,
+                IsGas: isGas,//True = SI, False = NO
+                Amount: amount
+            }
+        } else {
             modalError();
         }
     }
     function modalError() {
-        /* Modal.error({
-          title: 'Error',
-          content: 'Por favor, complete los campos obligatorios'
-        }); */
-      }
+        Modal.error({
+            title: 'Error',
+            content: 'Por favor, complete los campos obligatorios'
+        });
+    }
     return (
         <div className="margin-content-tb">
             <Row>
@@ -95,13 +109,13 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
 
                     <Dropdown
                         placeholder='Año'
-                        className={'margin-input w-80 '+formatValidInputClass(validates.year)}
+                        className={'margin-input w-80 ' + formatValidInputClass(validates.year)}
                         optionsList={yearList}
                         onChange={onChangeYear}
                         value={year} />
                     <Dropdown
                         placeholder='Marca'
-                        className={'margin-input w-80 '+formatValidInputClass(validates.brand)}
+                        className={'margin-input w-80 ' + formatValidInputClass(validates.brand)}
                         optionsList={brandList}
                         onChange={onChangeBrand}
                         value={brand} />
@@ -120,13 +134,13 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                         </Col>
                     </Row>
                 </Col>
-                <Divider orientation='center'/>
+                <Divider orientation='center' />
                 <Col span={24} offset={2}>
                     <Row>
                         <Col span={12} >
                             <Text className='regular-font'>Indica la suma asegurada</Text><br></br>
                             <Text className='title13'>min $12,500</Text>
-                            <Divider type='vertical'/>
+                            <Divider type='vertical' />
                             <Text className='title13'>max $16,500</Text>
                         </Col>
                         <Col span={7} >
@@ -136,12 +150,14 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                                 parser={(value: any) => value.replace(/\$\s?|(,*)/g, '')}
                                 onChange={onChangeAmount}
                                 step={100}
+                                min={12500}
+                                max={16500}
                             />
                         </Col>
                     </Row>
                 </Col>
                 <Col span={24} offset={2}>
-                    <Button className='button-red' type='primary' onClick={onContinueClick}>CONTINUAR<RightOutlined/></Button>
+                    <Button className='button-red' type='primary' onClick={onContinueClick}>CONTINUAR<RightOutlined /></Button>
                 </Col>
             </Row>
         </div>
