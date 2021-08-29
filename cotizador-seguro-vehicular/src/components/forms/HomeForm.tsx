@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import {Modal, Typography, Input, Button, Row, Col } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import Dropdown from '../shared/Dropdown';
@@ -6,7 +6,11 @@ import { formatValidInputClass, validInputClass } from '../../resources/PackageH
 
 const { Text } = Typography;
 
-function HomeForm() {
+interface HomeFormProps{
+    successQuote:()=>void
+}
+
+const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
     const [documentTypeList] = useState([
         { label: 'DNI', value: 'DNI' },
         { label: 'C.E.', value: 'C.E.' }
@@ -57,7 +61,7 @@ function HomeForm() {
     }
     const onQuoteClick = (value: any) => {
         if(isValid()){
-
+            props.successQuote();
         }else{
             modalError();
         }
@@ -84,13 +88,15 @@ function HomeForm() {
                         placeholder={'Nro. de doc'}
                         onChange={onChangeNrDocument} 
                         value={nrDocument}
+                        type='number'
+                        maxLength={8}
                         />
 
-                    <Input className={'margin-input '+ formatValidInputClass(validates.phone)} placeholder="Celular" onChange={onChangePhone} value={phone} />
-                    <Input className={'margin-input '+ formatValidInputClass(validates.plate)} placeholder="Placa" onChange={onChangePlate} value={plate} />
+                    <Input className={'margin-input '+ formatValidInputClass(validates.phone)} type='number' placeholder="Celular" onChange={onChangePhone} maxLength={9} value={phone} />
+                    <Input className={'margin-input '+ formatValidInputClass(validates.plate)} placeholder="Placa" onChange={onChangePlate} maxLength={6} value={plate} />
                     <Checkbox className={'margin-input '+ formatValidInputClass(validates.termsCond)} onChange={onChangeCheck} checked={termsCond}>Acepto la <a href='/'>Política de Protección de Datos Personales</a> y los <a href='/'>Términos y Condiciones</a>.</Checkbox>
 
-                    <Button className='button-red' type='primary' onClick={onQuoteClick}>Cotízalo</Button>
+                    <Button className='button-red' type='primary' onClick={onQuoteClick}>COTÍZALO</Button>
                 </Col>
             </Row>
         </div>

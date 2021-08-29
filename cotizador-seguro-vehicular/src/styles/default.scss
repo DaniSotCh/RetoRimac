@@ -39,30 +39,48 @@ $font-height: 1.5;
     padding: 0px 50px;
 }
 
-.ant-page-header {
+.page-header {
     background: none !important;
-    width: calc(100%*2);
-}
-//responsive
-@media (min-width: 0px) {
-    .ant-page-header {
-    background: none !important;
+    position: fixed;
+    z-index: 1;
     width: 100%;
-} 
 }
+//----Responsive
+/* @media (min-width: 576px) {
+    .page-header {
+        background: none !important;
+        //width: 100%;
+    }
+} */
 .ant-input {
     border-radius: 4px;
     padding: 16px;
     color: #494F66;
 }
+.ant-input-number{
+    border-radius: 4px;
+    padding: 8px;
+    color: #494F66;
+    width: 100%!important;    
+}
+.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    border-radius: 4px;
+    height: auto;
+    padding: 8px;
+}
 .input-error{
     border: 1px solid #EF3340;
     border-radius: 4px;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
 .ant-input-group-addon {
     border-radius: 4px;
-    padding: 16px;
+    //padding: 16px;
 }
 
 .ant-checkbox .ant-checkbox-inner {
@@ -112,7 +130,9 @@ $font-height: 1.5;
 .margin-r {
     margin-right: 200px;
 }
-
+.m-tb{
+   margin: 20px 0px; 
+}
 .w-50 {width: 50%;}
 
 .w-75 {width: 75%;}
@@ -128,6 +148,8 @@ $font-height: 1.5;
 .pt-30 {padding-top: 30%;}
 
 .pt-20 {padding-top: 20%;}
+
+.pt-10 {padding-top: 10%;}
 
 .button-red {
     border-radius: 8px;
@@ -156,7 +178,7 @@ $font-height: 1.5;
 }
 
 .background-image {
-    background-image: url('https://www.rimac.com/content/dam/rimac/publica/pdp-vehicular/Bg.png');
+    //background-image: url('https://www.rimac.com/content/dam/rimac/publica/pdp-vehicular/Bg.png');
     background-color: #ECF0FF;
     margin: 0;
     padding: 0;
@@ -187,7 +209,6 @@ $font-height: 1.5;
     letter-spacing: -0.2px;
     color: #494F66;
 }
-
 .title12 {
     font-style: normal;
     font-weight: bold;
@@ -198,6 +219,16 @@ $font-height: 1.5;
     color: #494F66;
 }
 
+.title13 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #676F8F;
+}
+
 .paragraph2 {
     font-family: 'Roboto';
     font-size: 14px;
@@ -206,7 +237,43 @@ $font-height: 1.5;
     align-items: center;
     color: #676F8F;
 }
+.regular-font {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.2px;
+    color: #494F66;
+}
 
+.subtitle01 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #494F66;
+}
+.subtitle02 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    color: #676F8F;
+}
+.link-text{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #6F7DFF;
+    padding: 0px;
+}
 .footer-text {
     font-family: 'Roboto';
     font-style: normal;
