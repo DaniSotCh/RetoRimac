@@ -1,27 +1,32 @@
 import { Col, PageHeader, Row } from 'antd';
 import React from 'react';
 import HomeForm from '../forms/HomeForm';
+import HomeImage from '../imageMessage/HomeImage';
+import { Footer } from 'antd/lib/layout/layout';
 import { PhoneFilled } from '@ant-design/icons';
 
 function HomePage() {
     return (
-        <div className="site-page-header-ghost-wrapper">
-            <PageHeader
-                ghost={false}
-                //title="Title"
-                //subTitle="This is a subtitle"
-                extra={[
-                    <label>{'¿Tienes alguna duda?'}</label>,
-                    <PhoneFilled/>,
-                    <a href="tel:(01)4116001">{'(01) 411 6001'}</a>
-                ]}
-                avatar={{src:'https://www.rimac.com/content/dam/rimac/publica/rimac/menu/logo-red-rimac.svg'}}
-            >
-            </PageHeader>
-            <Row>
-                <Col span={12}>Imagen</Col>
+        <div>
+            <Row align="middle">
+                <Col span={12} className='background-image'>
+                    <PageHeader
+                        ghost={false}
+                        extra={[
+                            <label>{'¿Tienes alguna duda?'}</label>,
+                            <PhoneFilled />,
+                            <a href="tel:(01)4116001">{'(01) 411 6001'}</a>
+                        ]}
+                        avatar={{ 
+                            className:'ant-layout-header',
+                            src: 'https://www.rimac.com/content/dam/rimac/publica/rimac/menu/logo-red-rimac.svg' }}
+                    >
+                    </PageHeader>
+                    <HomeImage />
+                    <Footer className='footer-text'>© 2020 RIMAC Seguros y Reaseguros.</Footer>
+                </Col>
                 <Col span={12}>
-                    <HomeForm/>
+                    <HomeForm />
                 </Col>
             </Row>
         </div>

@@ -9,7 +9,7 @@ Librerias utilizadas:
     1.  Creación del proyecto ✅
     2.  Agregación de librerías ✅
     3.  Creación de componentes ✅
-    4.  Creación de Home
+    4.  Creación de Home✅
     5.  Creación de Datos Auto
     6.  Creación de Arma Plan
     7.  Creación de Página de Gracias
