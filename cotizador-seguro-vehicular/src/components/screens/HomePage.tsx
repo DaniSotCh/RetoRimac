@@ -9,7 +9,7 @@ function HomePage() {
     return (
         <div>
             <Row align="middle">
-                <Col span={12} className='background-image'>
+                <Col span={12} className='background-image' xs={24} md={12}>
                     <PageHeader
                         ghost={false}
                         extra={[
@@ -25,7 +25,7 @@ function HomePage() {
                     <HomeImage />
                     <Footer className='footer-text'>© 2020 RIMAC Seguros y Reaseguros.</Footer>
                 </Col>
-                <Col span={12}>
+                <Col span={12} xs={24} md={12}>
                     <HomeForm />
                 </Col>
             </Row>

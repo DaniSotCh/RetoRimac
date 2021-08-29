@@ -43,7 +43,13 @@ $font-height: 1.5;
     background: none !important;
     width: calc(100%*2);
 }
-
+//responsive
+@media (min-width: 0px) {
+    .ant-page-header {
+    background: none !important;
+    width: 100%;
+} 
+}
 .ant-input {
     border-radius: 4px;
     padding: 16px;

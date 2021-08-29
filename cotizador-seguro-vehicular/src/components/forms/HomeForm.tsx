@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Modal, Typography, Input, Select, Button, Row, Col } from 'antd';
+import {Modal, Typography, Input, Button, Row, Col } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import Dropdown from '../shared/Dropdown';
 import { formatValidInputClass, validInputClass } from '../../resources/PackageHelper';
@@ -88,7 +88,7 @@ function HomeForm() {
 
                     <Input className={'margin-input '+ formatValidInputClass(validates.phone)} placeholder="Celular" onChange={onChangePhone} value={phone} />
                     <Input className={'margin-input '+ formatValidInputClass(validates.plate)} placeholder="Placa" onChange={onChangePlate} value={plate} />
-                    <Checkbox className={'margin-input '+ formatValidInputClass(validates.termsCond)} onChange={onChangeCheck} checked={termsCond}>Acepto la <a>Política de Protección de Datos Personales</a> y los <a>Términos y Condiciones</a>.</Checkbox>
+                    <Checkbox className={'margin-input '+ formatValidInputClass(validates.termsCond)} onChange={onChangeCheck} checked={termsCond}>Acepto la <a href='/'>Política de Protección de Datos Personales</a> y los <a href='/'>Términos y Condiciones</a>.</Checkbox>
 
                     <Button className='button-red' type='primary' onClick={onQuoteClick}>Cotízalo</Button>
                 </Col>
