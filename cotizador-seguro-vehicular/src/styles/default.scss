@@ -264,6 +264,23 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 28px;
     color: #676F8F;
 }
+.subtitle03 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: 0.2px;
+    color: #676F8F;
+}
+.subtitle06{
+    font-size: 20px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    color: #494F66;
+}
 .link-text{
     font-style: normal;
     font-weight: bold;
@@ -273,6 +290,17 @@ input[type=number]::-webkit-outer-spin-button {
     text-transform: uppercase;
     color: #6F7DFF;
     padding: 0px;
+}
+.rob-text {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: $font-weight-light;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+    color: #A3ABCC;
+    left: 121px;
+    top: 649px;
 }
 .footer-text {
     font-family: 'Roboto';

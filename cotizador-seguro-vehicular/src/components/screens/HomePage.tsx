@@ -1,9 +1,8 @@
-import { Col, PageHeader, Row } from 'antd';
+import { Col, Row } from 'antd';
 import React, { FunctionComponent } from 'react';
 import HomeForm from '../forms/HomeForm';
 import HomeImage from '../imageMessage/HomeImage';
 import { Footer } from 'antd/lib/layout/layout';
-import { PhoneFilled } from '@ant-design/icons';
 
 interface HomeProps{
     nextPage:()=>void

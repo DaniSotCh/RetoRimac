@@ -68,7 +68,6 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
         setPlate(event.target.value);
     }
     const onQuoteClick = (value: any) => {
-                    setMessage('Por favor, complete los campos obligatorios');
         if (isValid()) {
             let bodyDetails = {
                 DocumentType: documentType,
@@ -101,6 +100,7 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
                 }
             );
         } else {
+            setMessage('Por favor, complete los campos obligatorios');
             modalError();
         }
     }

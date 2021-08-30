@@ -1,17 +1,16 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { Modal, Typography, Input, Button, Row, Col, PageHeader, Radio, Divider, InputNumber } from 'antd';
+import { Modal, Typography, Input, Button, Row, Col, PageHeader, Radio, Divider, InputNumber, Card } from 'antd';
 import Dropdown from '../shared/Dropdown';
 import { LeftCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { formatValidInputClass, validInputClass } from '../../resources/PackageHelper';
+import imgUrl from '../../styles/images/rightImage.png';
 
 const { Text } = Typography;
 
 interface CarDetailsProps {
-    returnPage: () => void,
-    nextStep: () => void
+    returnPage: () => void
 }
-
-const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
+const CarPlanForm: FunctionComponent<CarDetailsProps> = (props) => {
     const [yearList] = useState([
         { label: '2010', value: '2010' },
         { label: '2011', value: '2011' },
@@ -42,22 +41,20 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
         brand: true,
         amount: true
     });
-    const[userBody,setUserBody]=useState({})
 
     useEffect(() => {
         let objUser = JSON.parse(localStorage.getItem('UserBody')!);
         setContactName(localStorage.getItem('UserName')!);
-        setUserBody(objUser);
         //body: "{\"DocumentType\":\"DNI\",\"NrDocument\":\"79256984\",\"PhoneNumber\":\"949498494\",\"Plate\":\"EEE984\",\"TermsCond\":true}"
-    },[contactName])
+    })
 
     const isValid = () => {
         setValidates({
             year: validInputClass(year),
             brand: validInputClass(brand),
-            amount: validInputClass(amount != null ? amount.toString() : '')
+            amount: validInputClass(amount.toString())
         })
-        return (validInputClass(year) && validInputClass(brand) && validInputClass(amount != null ? amount.toString() : ''));
+        return (validInputClass(year) && validInputClass(brand) && validInputClass(amount.toString()));
     }
 
     const onChangeCheck = (event: any) => {
@@ -74,7 +71,7 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
     }
     const onChangeAmount = (value: any) => {
         setValidates({ ...validates, amount: true });
-        setAmount(value);
+        setAmount(value != null ? value : 0);
     }
     const onContinueClick = (value: any) => {
         if (isValid()) {
@@ -84,7 +81,6 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                 IsGas: isGas,//True = SI, False = NO
                 Amount: amount
             }
-            props.nextStep();
         } else {
             modalError();
         }
@@ -106,64 +102,28 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                     />
                 </Col>
                 <Col span={24} offset={2}>
-                    <Text className='title04'>¡Hola, <label className='text-red'>{contactName}</label>!</Text><br></br>
-                    <Text className='subtitle02'>Completa los datos de tu auto</Text>
+                    <Text className='title04'>Mira las coberturas</Text><br></br>
+                    <Text className='subtitle02'>Conoce las coberturas para tu plan</Text>
 
-                    <Dropdown
-                        placeholder='Año'
-                        className={'margin-input w-80 ' + formatValidInputClass(validates.year)}
-                        optionsList={yearList}
-                        onChange={onChangeYear}
-                        value={year} />
-                    <Dropdown
-                        placeholder='Marca'
-                        className={'margin-input w-80 ' + formatValidInputClass(validates.brand)}
-                        optionsList={brandList}
-                        onChange={onChangeBrand}
-                        value={brand} />
-
+                    <Card className='w-80'>
+                        <Row>
+                            <Col span={14}>
+                                <p className='rob-text'>Placa: C2U-114</p>
+                                <p className='subtitle06'>Wolkswagen 2019 Golf</p>
+                                <Button type="link" className='link-text' htmlType="button" onClick={props.returnPage}>editar</Button>
+                            </Col>
+                            <Col span={10}>
+                                <img alt='' width='112' src={imgUrl}></img>
+                            </Col>
+                        </Row>
+                    </Card>
                 </Col>
                 <Col span={24} offset={2}>
-                    <Row className='m-tb' >
-                        <Col span={15} >
-                            <Text className='regular-font'>¿Tu auto es gas?</Text>
-                        </Col>
-                        <Col span={8} >
-                            <Radio.Group onChange={onChangeCheck} value={radioValue}>
-                                <Radio value={1}>Si</Radio>
-                                <Radio value={2}>No</Radio>
-                            </Radio.Group>
-                        </Col>
-                    </Row>
-                </Col>
-                <Divider orientation='center' />
-                <Col span={24} offset={2}>
-                    <Row>
-                        <Col span={12} >
-                            <Text className='regular-font'>Indica la suma asegurada</Text><br></br>
-                            <Text className='title13'>min $12,500</Text>
-                            <Divider type='vertical' />
-                            <Text className='title13'>max $16,500</Text>
-                        </Col>
-                        <Col span={7} >
-                            <InputNumber
-                                value={amount}
-                                formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                                parser={(value: any) => value.replace(/\$\s?|(,*)/g, '')}
-                                onChange={onChangeAmount}
-                                step={100}
-                                min={12500}
-                                max={16500}
-                            />
-                        </Col>
-                    </Row>
-                </Col>
-                <Col span={24} offset={2}>
-                    <Button className='button-red' type='primary' onClick={onContinueClick}>CONTINUAR<RightOutlined /></Button>
+                    <Text className='subtitle06'>Agrega o quita coberturas</Text>
                 </Col>
             </Row>
         </div>
     );
 }
 
-export default CarDetailsForm;
+export default CarPlanForm;
