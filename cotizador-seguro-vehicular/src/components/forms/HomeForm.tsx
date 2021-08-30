@@ -21,7 +21,7 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
     const [termsCond, setTermsCond] = useState(true);
     const [phone, setPhone] = useState('');
     const [plate, setPlate] = useState('');
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('Por favor, complete los campos obligatorios');
     const [validates, setValidates] = useState({
         documentType: true,
         nrDocument: true,
@@ -100,7 +100,6 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
                 }
             );
         } else {
-            setMessage('Por favor, complete los campos obligatorios');
             modalError();
         }
     }

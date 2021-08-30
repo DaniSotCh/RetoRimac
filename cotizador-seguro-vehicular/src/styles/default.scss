@@ -20,7 +20,34 @@ $font-height: 1.5;
 .site-page-header-ghost-wrapper {
     padding: 24px;
 }
-
+.ant-tabs-tab {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #494F66;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #EF3340;
+}
+ .ant-tabs-ink-bar {
+    position: absolute;
+    background: #EF3340;
+    pointer-events: none;
+ }
 .ant-layout-header {
     width: fit-content !important;
     height: fit-content !important;
@@ -44,6 +71,9 @@ $font-height: 1.5;
     position: fixed;
     z-index: 1;
     width: 100%;
+}
+.page-image{
+    position: fixed!important;
 }
 //----Responsive
 /* @media (min-width: 576px) {
@@ -113,7 +143,9 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #43B748;
     border-color: #43B748;
 }
-
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-extra{
+    float: left;
+}
 .margin-input {
     margin: 8px 0px !important;
     width: 288px;
@@ -132,6 +164,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .m-tb{
    margin: 20px 0px; 
+}
+.m-lr{
+   margin: 0px 20px; 
 }
 .w-50 {width: 50%;}
 
@@ -192,7 +227,17 @@ input[type=number]::-webkit-outer-spin-button {
 .background-personaje {
     image-rendering: url('https://www.rimac.com/content/dam/rimac/publica/pdp-vehicular/personaje.svg');
 }
-
+.background-2page{
+    background-image: url('../styles/images/rightImage.png');
+    background-position-x: right;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 3px solid #F0F2FA;
+    box-sizing: border-box;
+    border-radius: 12px;
+    margin: 40px;
+}
 //-------------CUSTOM TEXTS-----------
 .text-red {
     color: #EF3340;
@@ -277,7 +322,7 @@ input[type=number]::-webkit-outer-spin-button {
 .subtitle06{
     font-size: 20px;
     line-height: 28px;
-    display: flex;
+    //display: flex;
     align-items: center;
     color: #494F66;
 }

@@ -8,10 +8,10 @@ import { PhoneFilled } from '@ant-design/icons';
 function App() {
   const [currentPage,setCurrentPage]=useState(1);
   const returnHome = () => {
-    setCurrentPage(1)
+    setCurrentPage(1);
   }
   const nextPage = () => {
-    setCurrentPage(2)
+    setCurrentPage(2);
   }
   return (
     <div>

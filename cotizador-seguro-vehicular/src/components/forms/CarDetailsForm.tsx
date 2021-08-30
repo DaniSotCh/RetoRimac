@@ -8,7 +8,9 @@ const { Text } = Typography;
 
 interface CarDetailsProps {
     returnPage: () => void,
-    nextStep: () => void
+    nextStep: () => void,
+    updateUserBody: (index: any) => void,
+    userBody:any
 }
 
 const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
@@ -42,14 +44,22 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
         brand: true,
         amount: true
     });
-    const[userBody,setUserBody]=useState({})
 
     useEffect(() => {
-        let objUser = JSON.parse(localStorage.getItem('UserBody')!);
-        setContactName(localStorage.getItem('UserName')!);
-        setUserBody(objUser);
-        //body: "{\"DocumentType\":\"DNI\",\"NrDocument\":\"79256984\",\"PhoneNumber\":\"949498494\",\"Plate\":\"EEE984\",\"TermsCond\":true}"
-    },[contactName])
+        if (contactName !== '') {
+            setContactName(JSON.parse(localStorage.getItem('UserName')!));
+        }
+    }, [contactName]);
+
+    useEffect(() => {
+        if (props.userBody !== null) {
+            setYear(props.userBody.Year);
+            setBrand(props.userBody.Brand);
+            setIsGas(props.userBody.IsGas);
+            setRadioValue(props.userBody.RadioValue);
+            setAmount(props.userBody.Amount);
+        }
+    }, [props.userBody]);
 
     const isValid = () => {
         setValidates({
@@ -82,8 +92,11 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                 Year: year,
                 Brand: brand,
                 IsGas: isGas,//True = SI, False = NO
-                Amount: amount
-            }
+                RadioValue: radioValue,
+                Amount: amount,
+                Plate: JSON.parse(localStorage.getItem('UserBody')!).Plate
+            };
+            props.updateUserBody(model);
             props.nextStep();
         } else {
             modalError();

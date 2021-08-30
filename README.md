@@ -11,7 +11,7 @@ Librerias utilizadas:
     3.  Creación de componentes ✅
     4.  Creación de Home✅
     5.  Creación de Datos Auto✅
-    6.  Creación de Arma Plan
+    6.  Creación de Arma Plan✅
     7.  Creación de Página de Gracias
     8.  Adaptación de estilos✅
     9.  Conexión al API✅

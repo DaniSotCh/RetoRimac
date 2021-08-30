@@ -8,7 +8,7 @@ const { Text } = Typography;
 
 interface CarDetailsProps {
     iWantPlan: () => void,
-    amount?: any
+    amount: any
 }
 
 const DescriptionPlanStep2: FunctionComponent<CarDetailsProps> = (props) => {
