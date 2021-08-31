@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Button, Col, Divider, Row, Steps, Typography } from 'antd';
+import { Button, Col, Divider, Progress, Row, Steps, Typography } from 'antd';
 import CarDetailsForm from '../forms/CarDetailsForm';
 import CarPlanForm from '../forms/CarPlanForm';
 import DescriptionPlan from '../forms/DescriptionPlan';
@@ -8,8 +8,9 @@ import DescriptionPlanStep2 from '../forms/DescriptionPlanStep2';
 const { Step } = Steps;
 const { Text } = Typography;
 
-interface CarDetailsProps{
-    returnPage:()=>void
+interface CarDetailsProps {
+    returnPage: () => void,
+    finalPage: () => void
 }
 
 const CarDetailsPage: FunctionComponent<CarDetailsProps> = (props) => {
@@ -31,16 +32,13 @@ const CarDetailsPage: FunctionComponent<CarDetailsProps> = (props) => {
     const nextStep = () => {
         setCurrentStep(1);
     }
-    const iWantPlan = () => {
-
-    }
-    const updateUserBody = (obj:any)=>{
-        if(obj!=null){
+    const updateUserBody = (obj: any) => {
+        if (obj != null) {
             setUserBody(obj);
         }
     }
-    const updateBodyAmount = (obj:any)=>{
-        if(obj!=null){
+    const updateBodyAmount = (obj: any) => {
+        if (obj != null) {
             setBodyAmount(obj);
         }
     }
@@ -84,20 +82,30 @@ const CarDetailsPage: FunctionComponent<CarDetailsProps> = (props) => {
     }
     return (
         <div>
-            <Row align="top">
-                <Col span={8} className='background-image page-image' xs={24} md={8}>
+            <Row>
+                <Col className='page-image' xs={24} md={8}>
                     <Steps className='margin-l margin-r pt-30' direction="vertical" current={currentStep}>
                         <Step title="Datos del auto" />
                         <Step title="Arma tu Plan" />
                     </Steps>
                 </Col>
-                <Col span={10} offset={8} xs={24} md={10}>
-                    {currentStep === 0 && <CarDetailsForm returnPage={props.returnPage} nextStep={nextStep} userBody={userBody} updateUserBody={updateUserBody}/>}
-                    {currentStep === 1 && <CarPlanForm returnPage={returnStep} addAmount={addAmount} removeAmount={removeAmount} userBody={userBody} bodyAmount={bodyAmount} updateBodyAmount={updateBodyAmount}/>}
+                <Col className='steps-mobile pt-20' span={24}>
+                    <Row className='w-80 progress-bar'>
+                        <Col span={8}>
+                            <Text>Paso {currentStep + 1} de 2</Text>
+                        </Col>
+                        <Col span={16}>
+                            <Progress percent={currentStep * 50} showInfo={false} />
+                        </Col>
+                    </Row>
                 </Col>
-                <Col className='margin-content-tb pt-10' span={4} xs={24} md={4}>
-                    {currentStep === 0 && <DescriptionPlan/>}
-                    {currentStep === 1 && <DescriptionPlanStep2 iWantPlan={iWantPlan} amount={amount}/>}
+                <Col offset={8} xs={24} md={10}>
+                    {currentStep === 0 && <CarDetailsForm returnPage={props.returnPage} nextStep={nextStep} userBody={userBody} updateUserBody={updateUserBody} />}
+                    {currentStep === 1 && <CarPlanForm returnPage={returnStep} addAmount={addAmount} removeAmount={removeAmount} userBody={userBody} bodyAmount={bodyAmount} updateBodyAmount={updateBodyAmount} />}
+                </Col>
+                <Col className='margin-content-tb pt-10' xs={24} md={4}>
+                    {currentStep === 0 && <DescriptionPlan />}
+                    {currentStep === 1 && <DescriptionPlanStep2 amount={amount} finalPage={props.finalPage}/>}
                 </Col>
             </Row>
         </div>

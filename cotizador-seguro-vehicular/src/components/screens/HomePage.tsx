@@ -4,23 +4,20 @@ import HomeForm from '../forms/HomeForm';
 import HomeImage from '../imageMessage/HomeImage';
 import { Footer } from 'antd/lib/layout/layout';
 
-interface HomeProps{
-    nextPage:()=>void
+interface HomeProps {
+    nextPage: () => void
 }
 
 const HomePage: FunctionComponent<HomeProps> = (props) => {
     return (
-        <div>
-            <Row align="middle">
-                <Col span={12} className='background-image' xs={24} md={12}>
-                    <HomeImage />
-                    <Footer className='footer-text'>© 2020 RIMAC Seguros y Reaseguros.</Footer>
-                </Col>
-                <Col span={12} xs={24} md={12}>
-                    <HomeForm successQuote={props.nextPage}/>
-                </Col>
-            </Row>
-        </div>
+        <Row align="middle">
+            <Col className='background-image' xs={24} sm={24} md={24} lg={12} xl={10} xxl={8}>
+                <HomeImage />
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={8} xl={8} xxl={8} offset={3}>
+                <HomeForm successQuote={props.nextPage} />
+            </Col>
+        </Row>
     );
 }
 

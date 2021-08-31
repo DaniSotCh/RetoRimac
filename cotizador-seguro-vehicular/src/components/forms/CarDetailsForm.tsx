@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { Modal, Typography, Input, Button, Row, Col, PageHeader, Radio, Divider, InputNumber } from 'antd';
+import { Modal, Typography, Input, Button, Row, Col, PageHeader, Radio, Divider, InputNumber, Card } from 'antd';
 import Dropdown from '../shared/Dropdown';
 import { LeftCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { formatValidInputClass, validInputClass } from '../../resources/PackageHelper';
@@ -110,7 +110,7 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
     }
     return (
         <div className="margin-content-tb">
-            <Row>
+            <Row className='details-form-01'>
                 <Col span={24} offset={1}>
                     <PageHeader
                         onBack={props.returnPage}
@@ -121,7 +121,7 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                 <Col span={24} offset={2}>
                     <Text className='title04'>¡Hola, <label className='text-red'>{contactName}</label>!</Text><br></br>
                     <Text className='subtitle02'>Completa los datos de tu auto</Text>
-
+                    
                     <Dropdown
                         placeholder='Año'
                         className={'margin-input w-80 ' + formatValidInputClass(validates.year)}
@@ -136,12 +136,27 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                         value={brand} />
 
                 </Col>
+                <Col span={24} className='details-01-mobile'>
+                    <div>
+                        <Card className='card-details-01'>
+                            <Row>
+                                <Col span={12}>
+                                    <img alt='' width='64' src='https://www.rimac.com/content/dam/rimac/publica/rimac/menu/Vehicular.png'></img>
+                                </Col>
+                                <Col span={12}>
+                                    <Text className='regular-font'>¿No encuentras el modelo?</Text><br></br>
+                                    <Button type="link" className='link-text' htmlType="button">clic aquí</Button>
+                                </Col>
+                            </Row>
+                        </Card>
+                    </div>
+                </Col>
                 <Col span={24} offset={2}>
                     <Row className='m-tb' >
-                        <Col span={15} >
+                        <Col xs={24} md={15} >
                             <Text className='regular-font'>¿Tu auto es gas?</Text>
                         </Col>
-                        <Col span={8} >
+                        <Col xs={24} md={8} >
                             <Radio.Group onChange={onChangeCheck} value={radioValue}>
                                 <Radio value={1}>Si</Radio>
                                 <Radio value={2}>No</Radio>
@@ -152,13 +167,13 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                 <Divider orientation='center' />
                 <Col span={24} offset={2}>
                     <Row>
-                        <Col span={12} >
+                        <Col xs={24} md={12} >
                             <Text className='regular-font'>Indica la suma asegurada</Text><br></br>
                             <Text className='title13'>min $12,500</Text>
                             <Divider type='vertical' />
                             <Text className='title13'>max $16,500</Text>
                         </Col>
-                        <Col span={7} >
+                        <Col xs={24} md={7}  >
                             <InputNumber
                                 value={amount}
                                 formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
@@ -174,7 +189,7 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
                 <Col span={24} offset={2}>
                     <Button className='button-red' type='primary' onClick={onContinueClick}>CONTINUAR<RightOutlined /></Button>
                 </Col>
-            </Row>
+                </Row>
         </div>
     );
 }

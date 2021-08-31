@@ -110,10 +110,14 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
         });
     }
     return (
-        <div className="margin-content-tb">
-            <Row justify="space-around" align="middle">
-                <Col span={12} offset={1}>
+        <div className="">
+            <Row justify="center" align="top">
+                <Col xs={16} sm={16} md={12} lg={12} xl={12} xxl={12}>
                     <Text className='title05'>Déjanos tus datos</Text>
+                </Col>
+            </Row>
+            <Row justify="center" align="top">
+                <Col xs={16} sm={16} md={12} lg={12} xl={12} xxl={12}>
                     <Input
                         className={'margin-input ' + formatValidInputClass(validates.nrDocument)}
                         addonBefore={
@@ -128,11 +132,25 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
                         type='number'
                         maxLength={8}
                     />
-
+                </Col>
+            </Row>
+            <Row justify="center" align="top">
+                <Col xs={16} sm={16} md={12} lg={12} xl={12} xxl={12}>
                     <Input className={'margin-input ' + formatValidInputClass(validates.phone)} type='number' placeholder="Celular" onChange={onChangePhone} maxLength={9} value={phone} />
+                </Col>
+            </Row>
+            <Row justify="center" align="top">
+                <Col xs={16} sm={16} md={12} lg={12} xl={12} xxl={12}>
                     <Input className={'margin-input ' + formatValidInputClass(validates.plate)} placeholder="Placa" onChange={onChangePlate} maxLength={6} value={plate} />
+                </Col>
+            </Row>
+            <Row justify="center" align="top">
+                <Col xs={16} sm={16} md={12} lg={12} xl={12} xxl={12}>
                     <Checkbox className={'margin-input ' + formatValidInputClass(validates.termsCond)} onChange={onChangeCheck} checked={termsCond}>Acepto la <a href='/'>Política de Protección de Datos Personales</a> y los <a href='/'>Términos y Condiciones</a>.</Checkbox>
-
+                </Col>
+            </Row>
+            <Row justify="center" align="top">
+                <Col className='button-container' xs={16} sm={16} md={12} lg={12} xl={12} xxl={12}>
                     <Button className='button-red' type='primary' onClick={onQuoteClick}>COTÍZALO</Button>
                 </Col>
             </Row>

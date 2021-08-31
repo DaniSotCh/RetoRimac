@@ -75,13 +75,6 @@ $font-height: 1.5;
 .page-image{
     position: fixed!important;
 }
-//----Responsive
-/* @media (min-width: 576px) {
-    .page-header {
-        background: none !important;
-        //width: 100%;
-    }
-} */
 .ant-input {
     border-radius: 4px;
     padding: 16px;
@@ -148,7 +141,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .margin-input {
     margin: 8px 0px !important;
-    width: 288px;
+    width: 100%;
 }
 
 .margin-content-tb {
@@ -168,6 +161,11 @@ input[type=number]::-webkit-outer-spin-button {
 .m-lr{
    margin: 0px 20px; 
 }
+.m-t-0{
+    margin-top: 0px!important;
+}
+.ml-85{margin-left:85%}
+.w-30 {width: 30%;}
 .w-50 {width: 50%;}
 
 .w-75 {width: 75%;}
@@ -180,12 +178,16 @@ input[type=number]::-webkit-outer-spin-button {
 
 .pt-40 {padding-top: 40%;}
 
-.pt-30 {padding-top: 30%;}
+.pt-35 {padding-top: calc(35%);}
+.pt-30 {padding-top: calc(30%);}
 
-.pt-20 {padding-top: 20%;}
+.pt-20 {padding-top: calc(20%);}
 
 .pt-10 {padding-top: 10%;}
-
+.contents-middle{
+   height: 10em;
+   position: relative 
+}
 .button-red {
     border-radius: 8px;
     background: #EF3340;
@@ -194,7 +196,7 @@ input[type=number]::-webkit-outer-spin-button {
     height: auto !important;
     width: 100%;
     margin-top: 40px;
-    width: 288px;
+    //width: 288px;
 }
 
 .button-red:hover {
@@ -222,6 +224,13 @@ input[type=number]::-webkit-outer-spin-button {
     background-position-x: left;
     position: relative;
     background-repeat: no-repeat;
+}
+.background-steps {
+    background-color: #ECF0FF;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
 }
 
 .background-personaje {
@@ -358,4 +367,117 @@ input[type=number]::-webkit-outer-spin-button {
     position: absolute;
     left: 121px;
     top: 649px;
+}
+
+//---------Responsive---------
+.mobile-version {
+    display: none;
+}
+.header-mobile{
+    display: none;
+}
+.details-01-mobile{
+    display: none;
+}
+.steps-mobile{display: none;}
+.details-02-button{
+    display: none;
+}
+@media only screen and (max-width:500px) {
+    .desktop-version {
+        display: none;
+    }
+    .footer-text{display: none;}
+    .mobile-version {
+        display: flex;
+        position: fixed;
+    }
+    .background-image{min-height: 40vh;}
+    .background-steps{min-height: 5vh;}
+    .button-container{
+        text-align-last: center;
+    }
+    .ant-col-offset-1{margin-left:0%;}
+    .ant-col-offset-2{margin-left:0%;}
+    .ant-col-offset-3{margin-left:0%;}
+    .ant-col-offset-8{margin-left:0%;}
+    .car-image{
+        width: 230%;
+        float: right;
+        transform: translate(100px, 70px);
+    }
+    .title04{
+        font-size: 2em;
+        font-weight: 400;
+    }
+    .header-desktop{
+        display: none;
+    }
+    .header-mobile{
+        display: flex;
+    }
+    .ant-page-header-heading-extra{
+        padding: 0px;
+        left: auto;
+        float: right;
+        right: 25px;
+        position: absolute;
+        font-size: 1.25rem;
+    }
+    .ant-layout-header{
+        padding: 0px;
+        left: 15px;
+        top: 22px;
+    }
+    .pt-30{padding-top: 30px;}
+    .margin-l{margin-left: 50px;}
+    .details-01-desktop{
+        display: none;
+    }
+    .details-01-mobile{
+        display: flex;
+    }
+    .ant-card-body{padding: 10px;}
+    .card-details-01 {
+        background: #F7F8FC;
+        margin: 0px 20px;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .details-form-01 {
+        padding: 20px;
+    }
+
+    .w-80 {
+        width: 100%!important;
+    }
+    .page-image{display: none;}
+    .steps-mobile{display: flex;}
+    .margin-content-tb {
+        margin: 0px!important;
+    }
+    .progress-bar{
+        position: fixed;
+        z-index: 999;
+        background: #fff;
+        margin: 10px;
+    }
+    .ant-progress-outer{
+        padding-right: 50px!important;
+    }
+    .details-02-image{
+        display: none;
+    }
+    .details-02-button{
+        display: flex;
+    }
+    .subtitle03{text-transform: uppercase;}
+    .button-02-red{margin-top: 0px!important;}
+    .transform-img-03{
+        transform-origin: left;
+        transform: translate(250%, 40%) scaleX(-1);
+    }
+    .ml-85{margin-left: 0%;} 
+    .pt-50{padding-top: 0%;}
 }

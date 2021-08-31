@@ -8,7 +8,7 @@ const { Text } = Typography;
 
 function DescriptionPlan(){
     return (
-        <div>
+        <div className='details-01-desktop'>
             <Text className='subtitle01'>Ayuda</Text>
             <Divider />
             <Row>

@@ -33,7 +33,7 @@ const CarPlanForm: FunctionComponent<CarDetailsProps> = (props) => {
 
     return (
         <div className="margin-content-tb">
-            <Row className='w-80'>
+            <Row className='details-form-01 w-80'>
                 <Col span={24} offset={1}>
                     <PageHeader
                         onBack={props.returnPage}
