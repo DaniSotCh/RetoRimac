@@ -1,6 +1,5 @@
 import { Button, Col, Row } from 'antd';
 import React, { FunctionComponent } from 'react';
-import HomeImage from '../imageMessage/HomeImage';
 import { Footer } from 'antd/lib/layout/layout';
 import Text from 'antd/lib/typography/Text';
 import finalImage from '../../styles/images/finalImage.png'

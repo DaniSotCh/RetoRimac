@@ -2,7 +2,6 @@ import { Col, Row } from 'antd';
 import React, { FunctionComponent } from 'react';
 import HomeForm from '../forms/HomeForm';
 import HomeImage from '../imageMessage/HomeImage';
-import { Footer } from 'antd/lib/layout/layout';
 
 interface HomeProps {
     nextPage: () => void

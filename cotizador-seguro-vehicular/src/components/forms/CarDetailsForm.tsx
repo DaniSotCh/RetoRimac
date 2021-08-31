@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { Modal, Typography, Input, Button, Row, Col, PageHeader, Radio, Divider, InputNumber, Card } from 'antd';
+import { Modal, Typography, Button, Row, Col, PageHeader, Radio, Divider, InputNumber, Card } from 'antd';
 import Dropdown from '../shared/Dropdown';
 import { LeftCircleOutlined, RightOutlined } from '@ant-design/icons';
 import { formatValidInputClass, validInputClass } from '../../resources/PackageHelper';

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Button, Col, Divider, Progress, Row, Steps, Typography } from 'antd';
+import { Col, Progress, Row, Steps, Typography } from 'antd';
 import CarDetailsForm from '../forms/CarDetailsForm';
 import CarPlanForm from '../forms/CarPlanForm';
 import DescriptionPlan from '../forms/DescriptionPlan';
@@ -105,7 +105,7 @@ const CarDetailsPage: FunctionComponent<CarDetailsProps> = (props) => {
                 </Col>
                 <Col className='margin-content-tb pt-10' xs={24} md={4}>
                     {currentStep === 0 && <DescriptionPlan />}
-                    {currentStep === 1 && <DescriptionPlanStep2 amount={amount} finalPage={props.finalPage}/>}
+                    {currentStep === 1 && <DescriptionPlanStep2 amount={amount} finalPage={props.finalPage} />}
                 </Col>
             </Row>
         </div>

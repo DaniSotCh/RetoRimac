@@ -1,9 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { List, Col, Divider, Row, Steps, Typography, Button } from 'antd';
+import { List, Col, Divider, Row, Typography, Button } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 import { formatToCurrency } from '../../resources/PackageHelper';
 
-const { Step } = Steps;
 const { Text } = Typography;
 
 interface CarDetailsProps {

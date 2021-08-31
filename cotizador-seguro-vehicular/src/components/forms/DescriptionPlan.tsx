@@ -1,9 +1,6 @@
-import React, { FunctionComponent, useState } from 'react';
-import { Button, Col, Divider, Row, Steps, Typography } from 'antd';
-import CarDetailsForm from '../forms/CarDetailsForm';
-import CarPlanForm from '../forms/CarPlanForm';
+import React from 'react';
+import { Button, Col, Divider, Row, Typography } from 'antd';
 
-const { Step } = Steps;
 const { Text } = Typography;
 
 function DescriptionPlan(){
