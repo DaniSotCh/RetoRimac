@@ -46,10 +46,8 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
     });
 
     useEffect(() => {
-        if (contactName !== '') {
-            setContactName(JSON.parse(localStorage.getItem('UserName')!));
-        }
-    }, [contactName]);
+            setContactName(localStorage.getItem('UserName')!);
+    }, []);
 
     useEffect(() => {
         if (props.userBody !== null) {
@@ -110,7 +108,7 @@ const CarDetailsForm: FunctionComponent<CarDetailsProps> = (props) => {
     }
     return (
         <div className="margin-content-tb">
-            <Row className='details-form-01'>
+            <Row className='details-form-01 w-80'>
                 <Col span={24} offset={1}>
                     <PageHeader
                         onBack={props.returnPage}

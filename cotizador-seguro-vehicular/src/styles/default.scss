@@ -194,9 +194,9 @@ input[type=number]::-webkit-outer-spin-button {
     border-color: #EF3340;
     padding: 20px 32px;
     height: auto !important;
-    width: 100%;
+    //width: 100%;
     margin-top: 40px;
-    //width: 288px;
+    width: 288px;
 }
 
 .button-red:hover {
@@ -476,8 +476,9 @@ input[type=number]::-webkit-outer-spin-button {
     .button-02-red{margin-top: 0px!important;}
     .transform-img-03{
         transform-origin: left;
-        transform: translate(250%, 40%) scaleX(-1);
+        transform: translate(250%, 20%) scaleX(-1);
     }
     .ml-85{margin-left: 0%;} 
     .pt-50{padding-top: 0%;}
+    .button-red{width: 100%;}
 }

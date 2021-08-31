@@ -22,7 +22,7 @@ const FinalPage: FunctionComponent<FinalProps> = (props) => {
                     <Text className='title04'><label className='text-red'>¡Te damos la bienvenida!</label><br></br>
                         Cuenta con nosotros para proteger tu vehículo</Text><br></br>
                     <Text className='subtitle02'>Enviaremos la confirmación de compra de tu Plan Vehícular Tracking a tu correo:<br></br>
-                        <b>joel.sanchez@gmail.com</b></Text>
+                        <b>joel.sanchez@gmail.com</b></Text><br></br>
                     <Button className='button-red' type='primary' onClick={props.returnHome}>CÓMO USAR MI SEGURO</Button>
                 </Col>
             </Row>
