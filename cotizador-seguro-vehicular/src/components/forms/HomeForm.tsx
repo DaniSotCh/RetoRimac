@@ -87,12 +87,6 @@ const HomeForm: FunctionComponent<HomeFormProps> = (props) => {
                     if (json.httpStatusCode !== 201) {
                         modalError();
                     } else {
-                        {/*
-                        body: "{\"DocumentType\":\"DNI\",\"NrDocument\":\"79256984\",\"PhoneNumber\":\"949498494\",\"Plate\":\"EEE984\",\"TermsCond\":true}"
-                        httpStatusCode: 201
-                        id: 101
-                        title: "Juan"
-                    */}
                         localStorage.setItem('UserBody', json.body);
                         localStorage.setItem('UserName', json.title);
                         props.successQuote()

@@ -4,14 +4,14 @@ import { FunctionComponent, useEffect, useState } from 'react';
 
 const { Panel } = Collapse;
 
-interface CollapseForm {
+interface CollapseProps {
   addAmount: (index: any) => void,
   removeAmount: (index: any) => void,
   bodyAmount: any,
   updateBodyAmount: (index: any) => void,
 }
 
-const CollapseForm: FunctionComponent<CollapseForm> = (props) => {
+const CollapseForm: FunctionComponent<CollapseProps> = (props) => {
   const [isAdd, setIsAdd] = useState({
     step1: true,
     step2: true,
